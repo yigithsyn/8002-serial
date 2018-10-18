@@ -109,7 +109,7 @@
           var div0_form0_div2 = document.createElement("div")
           var div0_form0_div2_label0 = document.createElement("label")
           var div0_form0_div2_div0 = document.createElement("div")
-          var div0_form0_div2_div0_textarea0 = document.createElement("textarea")
+          var div0_form0_div2_div0_ul0 = document.createElement("ul")
           var div0_form0_div3 = document.createElement("div")
           var div0_form0_div3_label0 = document.createElement("label")
           var div0_form0_div3_div0 = document.createElement("div")
@@ -122,7 +122,7 @@
           var div0_form0_button1 = document.createElement("button")
 
           div0.className = "col-md-6"
-          div0_form0.className = "border border-primary rounded m-2 p-3"
+          div0_form0.className = "border border-success rounded m-2 p-3"
           div0_form0_div0.className = "form-group row"
           div0_form0_div0_label0.className = "col-form-label col-form-label-sm text-right mr-2"
           div0_form0_div0_div0.className = "flex-fill mr-1"
@@ -134,7 +134,7 @@
           div0_form0_div2.className = "form-group row"
           div0_form0_div2_label0.className = "col-form-label col-form-label-sm text-right mr-2"
           div0_form0_div2_div0.className = "flex-fill mr-1"
-          div0_form0_div2_div0_textarea0.className = "form-control form-control-sm"
+          div0_form0_div2_div0_ul0.className = "list-group border rounded"
           div0_form0_div3.className = "form-group row"
           div0_form0_div3_label0.className = "col-form-label col-form-label-sm text-right mr-2"
           div0_form0_div3_div0.className = "flex-fill mr-1"
@@ -146,8 +146,10 @@
           div0_form0_button0.className = "btn btn-sm btn-primary w-100 mb-4"
           div0_form0_button1.className = "btn btn-sm btn-info w-100 mb-4"
 
-          div0_form0_div2_div0_textarea0.setAttribute("rows", 3)
-          div0_form0_div2_div0_textarea0.setAttribute("readOnly", "")
+          // div0_form0_div2_div0_ul0.setAttribute("rows", 3)
+          div0_form0.setAttribute("action", "")
+          div0_form0_div2_div0_ul0.setAttribute("readOnly", "")
+          div0_form0_div2_div0_ul0.setAttribute("style", "height:90px; max-height:90px; overflow-y:scroll;")
           div0_form0_div4_div0_textarea0.setAttribute("rows", 5)
           div0_form0_div4_div0_textarea0.setAttribute("readOnly", "")
           div0_form0_div0_label0.setAttribute("style", "width: 70px;")
@@ -217,8 +219,29 @@
               type: 'PUT',
               data: { buff: div0_form0_div3_div0_input0.value },
               success: function (res) {
-                console.log(res)
                 if (res.error) console.log(res.error)
+                else {
+                  var div0_form0_div2_div0_ul0_li0 = document.createElement("li")
+                  var div0_form0_div2_div0_ul0_li0_span0 = document.createElement("span")
+                  div0_form0_div2_div0_ul0_li0.className = "list-group-item d-flex justify-content-between align-items-center list-group-item-action"
+                  div0_form0_div2_div0_ul0_li0_span0.className = "badge badge-primary badge-pill"
+                  div0_form0_div2_div0_ul0_li0.innerText = div0_form0_div3_div0_input0.value
+                  div0_form0_div2_div0_ul0_li0_span0.innerHTML = 4
+                  div0_form0_div2_div0_ul0_li0.onclick = function (e) {
+                    div0_form0_div3_div0_input0.value = this.innerHTML.split("<")[0]
+                    $.ajax({
+                      url: '/serialport/api/' + port.comName,
+                      type: 'PUT',
+                      data: { buff: div0_form0_div3_div0_input0.value },
+                      success: function (res) {
+                        if (res.error) console.log(res.error)
+                      }
+                    });
+                  }
+                  div0_form0_div2_div0_ul0_li0.appendChild(div0_form0_div2_div0_ul0_li0_span0)
+                  div0_form0_div2_div0_ul0.appendChild(div0_form0_div2_div0_ul0_li0)
+                  div0_form0_div2_div0_ul0.scrollTop = div0_form0_div2_div0_ul0.scrollHeight
+                }
               }
             });
           }
@@ -229,7 +252,7 @@
           div0_form0_div3_div0.appendChild(div0_form0_div3_div0_input0)
           div0_form0_div3.appendChild(div0_form0_div3_label0)
           div0_form0_div3.appendChild(div0_form0_div3_div0)
-          div0_form0_div2_div0.appendChild(div0_form0_div2_div0_textarea0)
+          div0_form0_div2_div0.appendChild(div0_form0_div2_div0_ul0)
           div0_form0_div2.appendChild(div0_form0_div2_label0)
           div0_form0_div2.appendChild(div0_form0_div2_div0)
           div0_form0_div1_div0.appendChild(div0_form0_div1_div0_select0)
@@ -279,6 +302,12 @@
         })
         console.log(ids)
       })
+      $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
     })();
 
   </script>
