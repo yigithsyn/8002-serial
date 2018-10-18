@@ -2,223 +2,286 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
 
-    <script src="/jquery/dist/jquery.js"></script>
-    <script src="/popper.js/dist/umd/popper.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/socket.io-client/dist/socket.io.js"></script>
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/popper.js/dist/umd/popper.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/socket.io-client/dist/socket.io.js"></script>
 </head>
 
 <body>
 
-    <div class="container">
-        <div id="row" class="row">
-            <div class="col-sm-6">
-                <form>
-                    <div class="form-group row">
-                        <label class="col-form-label col-form-label text-right mr-2">k :</label>
-                        <div class="flex-fill mr-1">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-form-label text-right mr-2">k :</label>
-                        <div class="flex-fill mr-1">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-form-label text-right mr-2">k :</label>
-                        <div class="flex-fill mr-1">
-                            <textarea class="form-control" rows=5></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="input" class="col-form-label col-form-label-sm text-right mr-2">k :</label>
-                        <div class="flex-fill mr-1">
-                            <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-form-label text-right mr-2">k :</label>
-                        <div class="flex-fill mr-1">
-                            <textarea class="form-control" rows=5></textarea>
-                        </div>
-                    </div>
-                </form>
+  <div class="container">
+    <div id="row" class="row">
+      <div class="col-sm-6">
+        <form>
+          <div class="form-group row">
+            <label class="col-form-label col-form-label text-right mr-2">k :</label>
+            <div class="flex-fill mr-1">
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
             </div>
-        </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-form-label col-form-label text-right mr-2">k :</label>
+            <div class="flex-fill mr-1">
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-form-label col-form-label text-right mr-2">k :</label>
+            <div class="flex-fill mr-1">
+              <textarea class="form-control" rows=5></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="input" class="col-form-label col-form-label-sm text-right mr-2">k :</label>
+            <div class="flex-fill mr-1">
+              <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-form-label col-form-label text-right mr-2">k :</label>
+            <div class="flex-fill mr-1">
+              <textarea class="form-control" rows=5></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 
-    <script>
-        var socket = io.connect('http://127.0.0.1:3008');
-        // socket.on('connect', function (data) {
-        //     socket.emit('join', 'Hello World from client');
-        // });
-        socket.on('data', function (data) {
-            $('#future').append(data + "<br/>");
-        });
+  <script>
+    var socket = io.connect('http://127.0.0.1:3008');
+    // socket.on('connect', function (data) {
+    //     socket.emit('join', 'Hello World from client');
+    // });
+    socket.on('data', function (data) {
+      $('#future').append(data + "<br/>");
+    });
 
-        // $('form').submit(function (e) {
-        //     e.preventDefault();
-        //     var message = $('#chat_input').val();
-        //     socket.emit('messages', message);
-        // });
+    // $('form').submit(function (e) {
+    //     e.preventDefault();
+    //     var message = $('#chat_input').val();
+    //     socket.emit('messages', message);
+    // });
 
-        var baudRates = [110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000];
-        (function () {
-            var el = document.querySelector("#row")
-            while (el.firstChild) el.removeChild(el.firstChild)
+    var baudRates = [110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000];
+    (function () {
+      var el = document.querySelector("#row")
+      while (el.firstChild) el.removeChild(el.firstChild)
 
-            $.get("/serialport/api", ports => {
-                let ids = [], manufacturers = []
-                ports.forEach(port => {
-                    ids.push(port.comName)
-                    manufacturers.push(port.manufacturer)
+      var intervals = {}
 
-                    var div0 = document.createElement("div")
-                    var div0_form0 = document.createElement("form")
-                    var div0_form0_div0 = document.createElement("div")
-                    var div0_form0_div0_label0 = document.createElement("label")
-                    var div0_form0_div0_div0 = document.createElement("div")
-                    var div0_form0_div0_div0_select0 = document.createElement("select")
-                    var div0_form0_div1 = document.createElement("div")
-                    var div0_form0_div1_label0 = document.createElement("label")
-                    var div0_form0_div1_div0 = document.createElement("div")
-                    var div0_form0_div1_div0_select0 = document.createElement("select")
-                    var div0_form0_div2 = document.createElement("div")
-                    var div0_form0_div2_label0 = document.createElement("label")
-                    var div0_form0_div2_div0 = document.createElement("div")
-                    var div0_form0_div2_div0_textarea0 = document.createElement("textarea")
-                    var div0_form0_div3 = document.createElement("div")
-                    var div0_form0_div3_label0 = document.createElement("label")
-                    var div0_form0_div3_div0 = document.createElement("div")
-                    var div0_form0_div3_div0_input0 = document.createElement("input")
-                    var div0_form0_div4 = document.createElement("div")
-                    var div0_form0_div4_label0 = document.createElement("label")
-                    var div0_form0_div4_div0 = document.createElement("div")
-                    var div0_form0_div4_div0_textarea0 = document.createElement("textarea")
-                    var div0_form0_button0 = document.createElement("button")
-                    var div0_form0_button1 = document.createElement("button")
+      $.get("/serialport/api", ports => {
+        let ids = [], manufacturers = []
+        ports.forEach(port => {
+          ids.push(port.comName)
+          manufacturers.push(port.manufacturer)
 
-                    div0.className = "col-md-6"
-                    div0_form0.className = "border border-primary rounded m-2 p-3"
-                    div0_form0_div0.className = "form-group row"
-                    div0_form0_div0_label0.className = "col-form-label col-form-label-sm text-right mr-2"
-                    div0_form0_div0_div0.className = "flex-fill mr-1"
-                    div0_form0_div0_div0_select0.className = "form-control form-control-sm"
-                    div0_form0_div1.className = "form-group row"
-                    div0_form0_div1_label0.className = "col-form-label col-form-label-sm text-right mr-2"
-                    div0_form0_div1_div0.className = "flex-fill mr-1"
-                    div0_form0_div1_div0_select0.className = "form-control form-control-sm"
-                    div0_form0_div2.className = "form-group row"
-                    div0_form0_div2_label0.className = "col-form-label col-form-label-sm text-right mr-2"
-                    div0_form0_div2_div0.className = "flex-fill mr-1"
-                    div0_form0_div2_div0_textarea0.className = "form-control form-control-sm"
-                    div0_form0_div3.className = "form-group row"
-                    div0_form0_div3_label0.className = "col-form-label col-form-label-sm text-right mr-2"
-                    div0_form0_div3_div0.className = "flex-fill mr-1"
-                    div0_form0_div3_div0_input0.className = "form-control form-control-sm"
-                    div0_form0_div4.className = "form-group row"
-                    div0_form0_div4_label0.className = "col-form-label col-form-label-sm text-right mr-2"
-                    div0_form0_div4_div0.className = "flex-fill mr-1"
-                    div0_form0_div4_div0_textarea0.className = "form-control form-control-sm"
-                    div0_form0_button0.className = "btn btn-sm btn-primary w-100 mb-4"
-                    div0_form0_button1.className = "btn btn-sm btn-info w-100 mb-4"
+          var div0 = document.createElement("div")
+          var div0_form0 = document.createElement("form")
+          var div0_form0_div0 = document.createElement("div")
+          var div0_form0_div0_label0 = document.createElement("label")
+          var div0_form0_div0_div0 = document.createElement("div")
+          var div0_form0_div0_div0_select0 = document.createElement("select")
+          var div0_form0_div1 = document.createElement("div")
+          var div0_form0_div1_label0 = document.createElement("label")
+          var div0_form0_div1_div0 = document.createElement("div")
+          var div0_form0_div1_div0_select0 = document.createElement("select")
+          var div0_form0_div2 = document.createElement("div")
+          var div0_form0_div2_label0 = document.createElement("label")
+          var div0_form0_div2_div0 = document.createElement("div")
+          var div0_form0_div2_div0_textarea0 = document.createElement("textarea")
+          var div0_form0_div3 = document.createElement("div")
+          var div0_form0_div3_label0 = document.createElement("label")
+          var div0_form0_div3_div0 = document.createElement("div")
+          var div0_form0_div3_div0_input0 = document.createElement("input")
+          var div0_form0_div4 = document.createElement("div")
+          var div0_form0_div4_label0 = document.createElement("label")
+          var div0_form0_div4_div0 = document.createElement("div")
+          var div0_form0_div4_div0_textarea0 = document.createElement("textarea")
+          var div0_form0_button0 = document.createElement("button")
+          var div0_form0_button1 = document.createElement("button")
 
-                    div0_form0_div2_div0_textarea0.setAttribute("rows", 3)
-                    div0_form0_div2_div0_textarea0.setAttribute("readOnly", "")
-                    div0_form0_div4_div0_textarea0.setAttribute("rows", 5)
-                    div0_form0_div4_div0_textarea0.setAttribute("readOnly", "")
-                    div0_form0_div0_label0.setAttribute("style", "width: 70px;")
-                    div0_form0_div1_label0.setAttribute("style", "width: 70px;")
-                    div0_form0_div2_label0.setAttribute("style", "width: 70px;")
-                    div0_form0_div3_label0.setAttribute("style", "width: 70px;")
-                    div0_form0_div4_label0.setAttribute("style", "width: 70px;")
-                    div0_form0_button1.setAttribute("disabled", "")
+          div0.className = "col-md-6"
+          div0_form0.className = "border border-primary rounded m-2 p-3"
+          div0_form0_div0.className = "form-group row"
+          div0_form0_div0_label0.className = "col-form-label col-form-label-sm text-right mr-2"
+          div0_form0_div0_div0.className = "flex-fill mr-1"
+          div0_form0_div0_div0_select0.className = "form-control form-control-sm"
+          div0_form0_div1.className = "form-group row"
+          div0_form0_div1_label0.className = "col-form-label col-form-label-sm text-right mr-2"
+          div0_form0_div1_div0.className = "flex-fill mr-1"
+          div0_form0_div1_div0_select0.className = "form-control form-control-sm"
+          div0_form0_div2.className = "form-group row"
+          div0_form0_div2_label0.className = "col-form-label col-form-label-sm text-right mr-2"
+          div0_form0_div2_div0.className = "flex-fill mr-1"
+          div0_form0_div2_div0_textarea0.className = "form-control form-control-sm"
+          div0_form0_div3.className = "form-group row"
+          div0_form0_div3_label0.className = "col-form-label col-form-label-sm text-right mr-2"
+          div0_form0_div3_div0.className = "flex-fill mr-1"
+          div0_form0_div3_div0_input0.className = "form-control form-control-sm"
+          div0_form0_div4.className = "form-group row"
+          div0_form0_div4_label0.className = "col-form-label col-form-label-sm text-right mr-2"
+          div0_form0_div4_div0.className = "flex-fill mr-1"
+          div0_form0_div4_div0_textarea0.className = "form-control form-control-sm"
+          div0_form0_button0.className = "btn btn-sm btn-primary w-100 mb-4"
+          div0_form0_button1.className = "btn btn-sm btn-info w-100 mb-4"
 
-                    ports.forEach(port0 => {
-                        var div0_form0_div0_div0_select0_option0 = document.createElement("option")
-                        if (port.comName == port0.comName) div0_form0_div0_div0_select0_option0.setAttribute("selected", "")
-                        div0_form0_div0_div0_select0_option0.innerText = port0.comName + ", " + port0.manufacturer
-                        div0_form0_div0_div0_select0.appendChild(div0_form0_div0_div0_select0_option0)
-                    })
-                    baudRates.forEach(baudRate => {
-                        var div0_form0_div1_div0_select0_option0 = document.createElement("option")
-                        if (baudRate == 38400) div0_form0_div1_div0_select0_option0.setAttribute("selected", "")
-                        div0_form0_div1_div0_select0_option0.innerHTML = baudRate
-                        div0_form0_div1_div0_select0.appendChild(div0_form0_div1_div0_select0_option0)
-                    })
+          div0_form0_div2_div0_textarea0.setAttribute("rows", 3)
+          div0_form0_div2_div0_textarea0.setAttribute("readOnly", "")
+          div0_form0_div4_div0_textarea0.setAttribute("rows", 5)
+          div0_form0_div4_div0_textarea0.setAttribute("readOnly", "")
+          div0_form0_div0_label0.setAttribute("style", "width: 70px;")
+          div0_form0_div1_label0.setAttribute("style", "width: 70px;")
+          div0_form0_div2_label0.setAttribute("style", "width: 70px;")
+          div0_form0_div3_label0.setAttribute("style", "width: 70px;")
+          div0_form0_div4_label0.setAttribute("style", "width: 70px;")
+          div0_form0_button1.setAttribute("disabled", "")
 
-                    div0_form0_div0_label0.innerText = "Port"
-                    div0_form0_div1_label0.innerText = "Baudrate"
-                    div0_form0_div2_label0.innerText = "Write Log"
-                    div0_form0_div3_label0.innerText = "Command"
-                    div0_form0_div4_label0.innerText = "Read Log"
-                    div0_form0_button0.innerText = "Connect"
-                    div0_form0_button1.innerText = "Send"
+          ports.forEach(port0 => {
+            var div0_form0_div0_div0_select0_option0 = document.createElement("option")
+            if (port.comName == port0.comName) div0_form0_div0_div0_select0_option0.setAttribute("selected", "")
+            div0_form0_div0_div0_select0_option0.innerText = port0.comName + ", " + port0.manufacturer
+            div0_form0_div0_div0_select0.appendChild(div0_form0_div0_div0_select0_option0)
+          })
+          baudRates.forEach(baudRate => {
+            var div0_form0_div1_div0_select0_option0 = document.createElement("option")
+            if (baudRate == 38400) div0_form0_div1_div0_select0_option0.setAttribute("selected", "")
+            div0_form0_div1_div0_select0_option0.innerHTML = baudRate
+            div0_form0_div1_div0_select0.appendChild(div0_form0_div1_div0_select0_option0)
+          })
 
-                    div0_form0_div4_div0.appendChild(div0_form0_div4_div0_textarea0)
-                    div0_form0_div4.appendChild(div0_form0_div4_label0)
-                    div0_form0_div4.appendChild(div0_form0_div4_div0)
-                    div0_form0_div3_div0.appendChild(div0_form0_div3_div0_input0)
-                    div0_form0_div3.appendChild(div0_form0_div3_label0)
-                    div0_form0_div3.appendChild(div0_form0_div3_div0)
-                    div0_form0_div2_div0.appendChild(div0_form0_div2_div0_textarea0)
-                    div0_form0_div2.appendChild(div0_form0_div2_label0)
-                    div0_form0_div2.appendChild(div0_form0_div2_div0)
-                    div0_form0_div1_div0.appendChild(div0_form0_div1_div0_select0)
-                    div0_form0_div1.appendChild(div0_form0_div1_label0)
-                    div0_form0_div1.appendChild(div0_form0_div1_div0)
-                    div0_form0_div0_div0.appendChild(div0_form0_div0_div0_select0)
-                    div0_form0_div0.appendChild(div0_form0_div0_label0)
-                    div0_form0_div0.appendChild(div0_form0_div0_div0)
-                    div0_form0.appendChild(div0_form0_div0)
-                    div0_form0.appendChild(div0_form0_div1)
-                    div0_form0.appendChild(div0_form0_button0)
-                    div0_form0.appendChild(div0_form0_div2)
-                    div0_form0.appendChild(div0_form0_div3)
-                    div0_form0.appendChild(div0_form0_button1)
-                    div0_form0.appendChild(div0_form0_button1)
-                    div0_form0.appendChild(div0_form0_div4)
-                    div0.appendChild(div0_form0)
-                    el.appendChild(div0)
+          div0_form0_div0_label0.innerText = "Port"
+          div0_form0_div1_label0.innerText = "Baudrate"
+          div0_form0_div2_label0.innerText = "Write Log"
+          div0_form0_div3_label0.innerText = "Command"
+          div0_form0_div4_label0.innerText = "Read Log"
+          div0_form0_button0.innerText = "Connect"
+          div0_form0_button1.innerText = "Send"
 
-                    $.post("/serialport/api/" + port.comName, { baudRate: 38400 }, res => {
-                        if (!res.error) {
-                            div0_form0_button0.classList.remove("btn-primary")
-                            div0_form0_button0.classList.add("btn-success")
-                            div0_form0_button1.removeAttribute("disabled")
-                            socket.on('data'+port.comName, function (data) {
-                                div0_form0_div4_div0_textarea0.value += data
-                                div0_form0_div4_div0_textarea0.scrollTop = div0_form0_div4_div0_textarea0.scrollHeight
-                            });
-                        }
-                    })
-                })
-                console.log(ids)
+          div0_form0_button0.onclick = function (e) {
+            e.preventDefault()
+            $.post("/serialport/api/" + port.comName, { baudRate: 38400 }, res => {
+              if (!res.error) {
+                div0_form0_button0.classList.remove("btn-primary")
+                div0_form0_button0.classList.add("btn-success")
+                div0_form0_button1.removeAttribute("disabled")
+                socket.on('data' + port.comName, function (data) {
+                  div0_form0_div4_div0_textarea0.value += data
+                  div0_form0_div4_div0_textarea0.scrollTop = div0_form0_div4_div0_textarea0.scrollHeight
+                });
+                // intervals[port.comName] = setInterval(function () {
+                //   $.ajax({
+                //     url: '/serialport/api/' + port.comName,
+                //     type: 'PUT',
+                //     data: { buff: "PFB" },
+                //     success: function (res) {
+                //       console.log(res)
+                //       if (res.error) console.log(res.error)
+                //     }
+                //   });
+                // }, 1000)
+              }
+              else {
+                div0_form0_button0.classList.add("btn-primary")
+                div0_form0_button0.classList.remove("btn-success")
+                div0_form0_button1.setAttribute("disabled", "")
+                // clearInterval(intervals[port.comName])
+              }
             })
-        })();
+          }
 
-    </script>
+          div0_form0_button1.onclick = function (e) {
+            e.preventDefault()
+            $.ajax({
+              url: '/serialport/api/' + port.comName,
+              type: 'PUT',
+              data: { buff: div0_form0_div3_div0_input0.value },
+              success: function (res) {
+                console.log(res)
+                if (res.error) console.log(res.error)
+              }
+            });
+          }
+
+          div0_form0_div4_div0.appendChild(div0_form0_div4_div0_textarea0)
+          div0_form0_div4.appendChild(div0_form0_div4_label0)
+          div0_form0_div4.appendChild(div0_form0_div4_div0)
+          div0_form0_div3_div0.appendChild(div0_form0_div3_div0_input0)
+          div0_form0_div3.appendChild(div0_form0_div3_label0)
+          div0_form0_div3.appendChild(div0_form0_div3_div0)
+          div0_form0_div2_div0.appendChild(div0_form0_div2_div0_textarea0)
+          div0_form0_div2.appendChild(div0_form0_div2_label0)
+          div0_form0_div2.appendChild(div0_form0_div2_div0)
+          div0_form0_div1_div0.appendChild(div0_form0_div1_div0_select0)
+          div0_form0_div1.appendChild(div0_form0_div1_label0)
+          div0_form0_div1.appendChild(div0_form0_div1_div0)
+          div0_form0_div0_div0.appendChild(div0_form0_div0_div0_select0)
+          div0_form0_div0.appendChild(div0_form0_div0_label0)
+          div0_form0_div0.appendChild(div0_form0_div0_div0)
+          div0_form0.appendChild(div0_form0_div0)
+          div0_form0.appendChild(div0_form0_div1)
+          div0_form0.appendChild(div0_form0_button0)
+          div0_form0.appendChild(div0_form0_div2)
+          div0_form0.appendChild(div0_form0_div3)
+          div0_form0.appendChild(div0_form0_button1)
+          div0_form0.appendChild(div0_form0_button1)
+          div0_form0.appendChild(div0_form0_div4)
+          div0.appendChild(div0_form0)
+          el.appendChild(div0)
+
+          $.post("/serialport/api/" + port.comName, { baudRate: 38400 }, res => {
+            if (!res.error) {
+              div0_form0_button0.classList.remove("btn-primary")
+              div0_form0_button0.classList.add("btn-success")
+              div0_form0_button1.removeAttribute("disabled")
+              socket.on('data' + port.comName, function (data) {
+                div0_form0_div4_div0_textarea0.value += data
+                div0_form0_div4_div0_textarea0.scrollTop = div0_form0_div4_div0_textarea0.scrollHeight
+              });
+              // intervals[port.comName] = setInterval(function () {
+              //   $.ajax({
+              //     url: '/serialport/api/' + port.comName,
+              //     type: 'PUT',
+              //     data: { buff: "PFB" },
+              //     success: function (res) {
+              //       console.log(res)
+              //       if (res.error) console.log(res.error)
+              //     }
+              //   });
+              // }, 1000)
+            }
+            else {
+              div0_form0_button0.classList.add("btn-primary")
+              div0_form0_button0.classList.remove("btn-success")
+              div0_form0_button1.setAttribute("disabled", "")
+            }
+          })
+        })
+        console.log(ids)
+      })
+    })();
+
+  </script>
 </body>
 
 </html>
