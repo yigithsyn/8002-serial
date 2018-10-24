@@ -212,6 +212,32 @@
             })
           }
 
+          div0_form0_div3_div0_input0.addEventListener("keyup", function (e) {
+            e.preventDefault()
+            if (e.keyCode == 13) {
+              $.ajax({
+                url: '/serialport/api/' + port.comName,
+                type: 'PUT',
+                data: { buff: this.value },
+                success: function (res) {
+                  if (res.error) console.log(res.error)
+                  var div0_form0_div2_div0_ul0_li0 = document.createElement("li")
+                  var div0_form0_div2_div0_ul0_li0_span0 = document.createElement("span")
+                  div0_form0_div2_div0_ul0_li0.className = "list-group-item d-flex justify-content-between align-items-center list-group-item-action"
+                  div0_form0_div2_div0_ul0_li0_span0.className = "badge badge-primary badge-pill"
+                  div0_form0_div2_div0_ul0_li0.innerText = div0_form0_div3_div0_input0.value
+                  div0_form0_div2_div0_ul0_li0_span0.innerHTML = 4
+                  div0_form0_div2_div0_ul0_li0.onclick = function (e) {
+                    div0_form0_div3_div0_input0.value = this.innerHTML.split("<")[0]
+                    // console.log(e)
+                  }
+                  div0_form0_div2_div0_ul0_li0.appendChild(div0_form0_div2_div0_ul0_li0_span0)
+                  div0_form0_div2_div0_ul0.appendChild(div0_form0_div2_div0_ul0_li0)
+                  div0_form0_div2_div0_ul0.scrollTop = div0_form0_div2_div0_ul0.scrollHeight
+                }
+              });
+            }
+          })
           div0_form0_button1.onclick = function (e) {
             e.preventDefault()
             $.ajax({
@@ -229,14 +255,7 @@
                   div0_form0_div2_div0_ul0_li0_span0.innerHTML = 4
                   div0_form0_div2_div0_ul0_li0.onclick = function (e) {
                     div0_form0_div3_div0_input0.value = this.innerHTML.split("<")[0]
-                    $.ajax({
-                      url: '/serialport/api/' + port.comName,
-                      type: 'PUT',
-                      data: { buff: div0_form0_div3_div0_input0.value },
-                      success: function (res) {
-                        if (res.error) console.log(res.error)
-                      }
-                    });
+                    // console.log(e)
                   }
                   div0_form0_div2_div0_ul0_li0.appendChild(div0_form0_div2_div0_ul0_li0_span0)
                   div0_form0_div2_div0_ul0.appendChild(div0_form0_div2_div0_ul0_li0)
