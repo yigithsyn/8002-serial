@@ -143,7 +143,7 @@
           div0_form0_div4_label0.className = "col-form-label col-form-label-sm text-right mr-2"
           div0_form0_div4_div0.className = "flex-fill mr-1"
           div0_form0_div4_div0_textarea0.className = "form-control form-control-sm"
-          div0_form0_button0.className = "btn btn-sm btn-primary w-100 mb-4"
+          div0_form0_button0.className = "btn btn-sm btn-danger w-100 mb-4"
           div0_form0_button1.className = "btn btn-sm btn-info w-100 mb-4"
 
           // div0_form0_div2_div0_ul0.setAttribute("rows", 3)
@@ -184,8 +184,9 @@
             e.preventDefault()
             $.post("/serialport/api/" + port.comName, { baudRate: 38400 }, res => {
               if (!res.error) {
-                div0_form0_button0.classList.remove("btn-primary")
-                div0_form0_button0.classList.add("btn-success")
+                div0_form0_button0.classList.remove("btn-succes")
+                div0_form0_button0.classList.add("btn-danger")
+                div0_form0_button0.innerText = "Disconnect"
                 div0_form0_button1.removeAttribute("disabled")
                 socket.on('data' + port.comName, function (data) {
                   div0_form0_div4_div0_textarea0.value += data
@@ -204,8 +205,9 @@
                 // }, 1000)
               }
               else {
-                div0_form0_button0.classList.add("btn-primary")
-                div0_form0_button0.classList.remove("btn-success")
+                div0_form0_button0.classList.add("btn-success")
+                div0_form0_button0.classList.remove("btn-danger")
+                div0_form0_button0.innerText = "Connect"
                 div0_form0_button1.setAttribute("disabled", "")
                 // clearInterval(intervals[port.comName])
               }
@@ -293,8 +295,9 @@
 
           $.post("/serialport/api/" + port.comName, { baudRate: 38400 }, res => {
             if (!res.error) {
-              div0_form0_button0.classList.remove("btn-primary")
-              div0_form0_button0.classList.add("btn-success")
+              div0_form0_button0.classList.remove("btn-success")
+              div0_form0_button0.classList.add("btn-danger")
+              div0_form0_button0.innerText = "Disconnect"
               div0_form0_button1.removeAttribute("disabled")
               socket.on('data' + port.comName, function (data) {
                 div0_form0_div4_div0_textarea0.value += data
@@ -313,8 +316,9 @@
               // }, 1000)
             }
             else {
-              div0_form0_button0.classList.add("btn-primary")
-              div0_form0_button0.classList.remove("btn-success")
+              div0_form0_button0.classList.add("btn-success")
+              div0_form0_button0.classList.remove("btn-danger")
+              div0_form0_button0.innerText = "Connect"
               div0_form0_button1.setAttribute("disabled", "")
             }
           })
